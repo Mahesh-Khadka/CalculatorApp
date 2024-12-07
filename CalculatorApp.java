@@ -34,8 +34,10 @@ public class CalculatorApp extends JFrame implements ActionListener {
             "7", "8", "9", "/", 
             "4", "5", "6", "*", 
             "1", "2", "3", "-", 
-            "C", "0", "=", "+"
+            "C", "0", "=", "+", 
+            "AC"
         };
+        
 
         for (String text : buttons) {
             JButton button = new JButton(text);
