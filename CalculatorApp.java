@@ -50,36 +50,40 @@ public class CalculatorApp extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
+public void actionPerformed(ActionEvent e) {
+    String command = e.getActionCommand();
 
-        if ("0123456789".contains(command)) { 
-            if (isOperatorPressed) {
-                display.setText(command);
-                isOperatorPressed = false;
-            } else {
-                display.setText(display.getText() + command);
-            }
-        } else if ("/*-+".contains(command)) { 
-            firstNum = Double.parseDouble(display.getText());
-            operator = command;
-            isOperatorPressed = true;
-        } else if ("=".equals(command)) { 
-            secondNum = Double.parseDouble(display.getText());
-            switch (operator) {
-                case "+" -> display.setText(String.valueOf(firstNum + secondNum));
-                case "-" -> display.setText(String.valueOf(firstNum - secondNum));
-                case "*" -> display.setText(String.valueOf(firstNum * secondNum));
-                case "/" -> display.setText(secondNum != 0 ? String.valueOf(firstNum / secondNum) : "Error");
-            }
-            isOperatorPressed = true;
-        } else if ("C".equals(command)) { 
-            display.setText("");
-            firstNum = secondNum = 0;
-            operator = "";
+    if ("0123456789".contains(command)) { 
+        if (isOperatorPressed) {
+            display.setText(command);
             isOperatorPressed = false;
+        } else {
+            display.setText(display.getText() + command);
         }
+    } else if ("/*-+".contains(command)) { 
+        firstNum = Double.parseDouble(display.getText());
+        operator = command;
+        isOperatorPressed = true;
+    } else if ("=".equals(command)) { 
+        secondNum = Double.parseDouble(display.getText());
+        switch (operator) {
+            case "+" -> display.setText(String.valueOf(firstNum + secondNum));
+            case "-" -> display.setText(String.valueOf(firstNum - secondNum));
+            case "*" -> display.setText(String.valueOf(firstNum * secondNum));
+            case "/" -> display.setText(secondNum != 0 ? String.valueOf(firstNum / secondNum) : "Error");
+        }
+        isOperatorPressed = true;
+    } else if ("C".equals(command)) { 
+        // Clear current input
+        display.setText("");
+    } else if ("AC".equals(command)) { 
+        // Clear everything
+        display.setText("");
+        firstNum = secondNum = 0;
+        operator = "";
+        isOperatorPressed = false;
     }
+}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
